@@ -1,0 +1,7 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { mobs } from '@/lib/content'
+export function generateStaticParams(){return mobs.map(m=>({slug:m.slug}))}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const m=mobs.find(x=>x.slug===slug);return {title:m?`${m.name} — моб Minecraft`:'Моб',description:m?.behavior}}
+export default async function Page({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const m=mobs.find(x=>x.slug===slug);if(!m)notFound();return <main><article className="detail-hero"><div className="breadcrumbs"><Link href="/mobs">Мобы</Link><span>/</span><span>{m.name}</span></div><div className="detail-heading"><div><span className="eyebrow">{m.category}</span><h1>{m.name}</h1></div><p>{m.behavior}</p></div><div className="detail-image"><Image src={m.image} alt={`Моб ${m.name}`} fill priority sizes="(max-width: 900px) 100vw, 1200px" /></div></article><div className="detail-body"><div className="facts-grid"><div className="fact"><span>Здоровье</span><strong>{m.health} HP</strong></div><div className="fact"><span>Появление</span><strong>{m.spawn}</strong></div><div className="fact"><span>Добыча</span><strong>{m.drop}</strong></div><div className="fact"><span>Поведение</span><strong>{m.category}</strong></div></div><h2>ПОВЕДЕНИЕ</h2><p>{m.behavior}</p><h2>ИНТЕРЕСНЫЙ ФАКТ</h2><p>{m.fact}</p></div></main>}

@@ -1,0 +1,3 @@
+import type { MetadataRoute } from 'next'
+import { articles,blocks,items,mobs,versions } from '@/lib/content'
+export default function sitemap():MetadataRoute.Sitemap{const base='https://craftщкшфч.vercel.app';const pages=['','versions','mobs','blocks','items','guides','news','search'].map(p=>({url:`${base}/${p}`,lastModified:new Date()}));return [...pages,...versions.map(x=>({url:`${base}/versions/${x.slug}`})),...mobs.map(x=>({url:`${base}/mobs/${x.slug}`})),...blocks.map(x=>({url:`${base}/blocks/${x.slug}`})),...items.map(x=>({url:`${base}/items/${x.slug}`})),...articles.map(x=>({url:`${base}/${x.type==='guide'?'guides':'news'}/${x.slug}`}))]}

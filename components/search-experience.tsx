@@ -1,0 +1,7 @@
+'use client'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+import { ArrowUpRight, Search } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import type { SearchEntry } from '@/lib/content'
+export function SearchExperience({entries}:{entries:SearchEntry[]}){const params=useSearchParams();const [query,setQuery]=useState(params.get('q')??'');const [type,setType]=useState('Все');const types=['Все',...Array.from(new Set(entries.map(x=>x.type)))];const filtered=useMemo(()=>{const q=query.toLowerCase().trim();return entries.filter(x=>(type==='Все'||x.type===type)&&(!q||`${x.title} ${x.description} ${x.meta}`.toLowerCase().includes(q)))},[entries,query,type]);return <><label className="search-large"><Search/><span className="sr-only">Поиск</span><input autoFocus value={query} onChange={e=>setQuery(e.target.value)} placeholder="Например, Бриз или крафтер" /></label><div className="catalog-tools"><span>{filtered.length} результатов</span><div className="filter-pills">{types.map(t=><button key={t} className={type===t?'active':''} onClick={()=>setType(t)}>{t}</button>)}</div></div><div>{filtered.map(x=><Link className="search-result" href={x.href} key={`${x.type}-${x.slug}`}><span className="eyebrow">{x.type}</span><div><h2>{x.title}</h2><p>{x.description}</p><small>{x.meta}</small></div><ArrowUpRight/></Link>)}</div>{!filtered.length&&<div className="empty-state"><h2>Ничего не найдено</h2><p>Проверьте написание или попробуйте более общий запрос.</p></div>}</>}
