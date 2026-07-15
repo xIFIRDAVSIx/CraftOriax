@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Menu, Moon, Search, Sun, X } from 'lucide-react'
-import { FormEvent, useEffect, useState } from 'react'
+import { Menu, Search, X } from 'lucide-react'
+import { FormEvent, useState } from 'react'
+import { useEdition } from './edition-provider'
 
 const links = [
   ['Версии', '/versions'], ['Мобы', '/mobs'], ['Блоки', '/blocks'], ['Предметы', '/items'], ['Гайды', '/guides'], ['Новости', '/news'],
@@ -13,19 +14,7 @@ export function SiteHeader() {
   const pathname = usePathname()
   const router = useRouter()
   const [open, setOpen] = useState(false)
-  const [dark, setDark] = useState(true)
-
-  useEffect(() => {
-    const isLight = document.documentElement.dataset.theme === 'light'
-    setDark(!isLight)
-  }, [])
-
-  function toggleTheme() {
-    const nextDark = !dark
-    setDark(nextDark)
-    document.documentElement.dataset.theme = nextDark ? 'dark' : 'light'
-    localStorage.setItem('mc-theme', nextDark ? 'dark' : 'light')
-  }
+  const { edition, toggleEdition } = useEdition()
 
   function submitSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -50,7 +39,7 @@ export function SiteHeader() {
             <Search size={16} aria-hidden="true" />
             <input name="q" aria-label="Поиск по энциклопедии" placeholder="Найти..." />
           </form>
-          <button className="icon-button" onClick={toggleTheme} aria-label={dark ? 'Включить светлую тему' : 'Включить тёмную тему'}>{dark ? <Sun size={19} /> : <Moon size={19} />}</button>
+          <button className="edition-switch" onClick={toggleEdition} aria-label={`Сейчас выбрана ${edition} Edition. Переключить на ${edition === 'Java' ? 'Bedrock' : 'Java'} Edition`} title={`Переключить на ${edition === 'Java' ? 'Bedrock' : 'Java'} Edition`}><span className="edition-dot" aria-hidden="true" />{edition}</button>
           <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Открыть меню">{open ? <X /> : <Menu />}</button>
         </div>
       </div>

@@ -25,11 +25,13 @@ export const catalogLabels = {
   items: { title: 'Предметы', eyebrow: 'Инвентарь исследователя', description: 'Инструменты, оружие и материалы с рецептами и практическим применением.' },
 }
 
-export type SearchEntry = { slug: string; title: string; description: string; type: string; href: string; meta: string }
+export type Edition = 'Java' | 'Bedrock'
+export type SearchEntry = { slug: string; title: string; description: string; type: string; href: string; meta: string; editions: Edition[] }
+const bothEditions: Edition[] = ['Java', 'Bedrock']
 export const searchIndex: SearchEntry[] = [
-  ...versions.map((v) => ({ slug: v.slug, title: v.name, description: v.summary, type: 'Версия', href: `/versions/${v.slug}`, meta: `${v.edition} · ${v.date}` })),
-  ...mobs.map((m) => ({ slug: m.slug, title: m.name, description: m.behavior, type: 'Моб', href: `/mobs/${m.slug}`, meta: `${m.category} · ${m.health} HP` })),
-  ...blocks.map((b) => ({ slug: b.slug, title: b.name, description: b.use, type: 'Блок', href: `/blocks/${b.slug}`, meta: b.category })),
-  ...items.map((i) => ({ slug: i.slug, title: i.name, description: i.description, type: 'Предмет', href: `/items/${i.slug}`, meta: i.category })),
-  ...articles.map((a) => ({ slug: a.slug, title: a.title, description: a.description, type: a.type === 'guide' ? 'Гайд' : 'Новость', href: `/${a.type === 'guide' ? 'guides' : 'news'}/${a.slug}`, meta: `${a.category} · ${a.readTime}` })),
+  ...versions.map((v) => ({ slug: v.slug, title: v.name, description: v.summary, type: 'Версия', href: `/versions/${v.slug}`, meta: `${v.edition} · ${v.date}`, editions: [v.edition as Edition] })),
+  ...mobs.map((m) => ({ slug: m.slug, title: m.name, description: m.behavior, type: 'Моб', href: `/mobs/${m.slug}`, meta: `${m.category} · ${m.health} HP`, editions: m.editions as Edition[] })),
+  ...blocks.map((b) => ({ slug: b.slug, title: b.name, description: b.use, type: 'Блок', href: `/blocks/${b.slug}`, meta: b.category, editions: b.editions as Edition[] })),
+  ...items.map((i) => ({ slug: i.slug, title: i.name, description: i.description, type: 'Предмет', href: `/items/${i.slug}`, meta: i.category, editions: i.editions as Edition[] })),
+  ...articles.map((a) => ({ slug: a.slug, title: a.title, description: a.description, type: a.type === 'guide' ? 'Гайд' : 'Новость', href: `/${a.type === 'guide' ? 'guides' : 'news'}/${a.slug}`, meta: `${a.category} · ${a.readTime}`, editions: bothEditions })),
 ]
