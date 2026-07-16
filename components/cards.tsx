@@ -2,9 +2,55 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Heart, MapPin } from 'lucide-react'
 import type { Article, Mob, Version } from '@/lib/content'
+import VersionBanner from "@/components/VersionBanner/VersionBanner";
 
-export function VersionCard({ version, featured = false }: { version: Version; featured?: boolean }) {
-  return <Link className={`content-card version-card ${featured ? 'featured' : ''}`} href={`/versions/${version.slug}`}><div className="card-image"><Image src={version.image} alt="" fill sizes={featured ? '(max-width: 800px) 100vw, 50vw' : '(max-width: 800px) 100vw, 33vw'} /><span className="edition-badge">{version.edition}</span></div><div className="card-body"><div className="card-meta"><span>{version.date}</span><ArrowUpRight size={18} /></div><h3>{version.name}</h3><p>{version.summary}</p><div className="tag-row">{version.features.slice(0, 3).map((feature) => <span key={feature}>{feature}</span>)}</div></div></Link>
+export function VersionCard({
+  version,
+  featured = false,
+}: {
+  version: Version;
+  featured?: boolean;
+}) {
+  return (
+    <Link
+      className={`content-card version-card ${featured ? "featured" : ""
+        }`}
+      href={`/versions/${version.slug}`}
+    >
+      <div className="card-image">
+        <VersionBanner
+          version={version.id}
+          compact
+        />
+
+        <span className="edition-badge">
+          {version.edition}
+        </span>
+      </div>
+
+      <div className="card-body">
+        <div className="card-meta">
+          <span>{version.date}</span>
+
+          <ArrowUpRight size={18} />
+        </div>
+
+        <h3>{version.name}</h3>
+
+        <p>{version.summary}</p>
+
+        <div className="tag-row">
+          {version.features
+            .slice(0, 3)
+            .map((feature) => (
+              <span key={feature}>
+                {feature}
+              </span>
+            ))}
+        </div>
+      </div>
+    </Link>
+  );
 }
 
 export function MobCard({ mob }: { mob: Mob }) {

@@ -3,94 +3,226 @@ const fs = require("fs");
 const MOJANG_URL =
   "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json";
 
-const INFO_PATH = "./data/versions-info.json";
+const INFO_PATH =
+  "./data/versions-info.json";
+
 
 let versionsInfo = {};
 
+
 if (fs.existsSync(INFO_PATH)) {
-  versionsInfo = JSON.parse(
-    fs.readFileSync(INFO_PATH, "utf8")
-  );
+
+  versionsInfo =
+    JSON.parse(
+      fs.readFileSync(
+        INFO_PATH,
+        "utf8"
+      )
+    );
+
 }
 
 
-// Берём только основные версии
-function isMainRelease(id) {
-  const parts = id.split(".");
 
-  if (parts.length === 2) {
-    return true;
+// Получить основную версию
+function getMainVersion(id) {
+
+  const parts =
+    id.split(".");
+
+
+  // Новый формат Minecraft
+  // например 26.1
+  if (!id.startsWith("1.")) {
+
+    return `${parts[0]}.${parts[1]}`;
+
   }
 
-  return false;
+
+  // Старый формат
+  // 1.20.6 -> 1.20
+  return `${parts[0]}.${parts[1]}`;
+
 }
 
 
-// Получение информации из базы
+
+// Берём только release
+function isRelease(version) {
+
+  return version.type === "release";
+
+}
+
+
+
+// Получение информации
 function getVersionInfo(id) {
 
-  // Например 1.20
+
   if (versionsInfo[id]) {
+
     return versionsInfo[id];
+
   }
 
 
-  // Например 1.20.6 -> 1.20
-  const major = id.match(/^\d+\.\d+/)?.[0];
+
+  const main =
+    getMainVersion(id);
 
 
-  if (major && versionsInfo[major]) {
-    return versionsInfo[major];
+
+  if (versionsInfo[main]) {
+
+    return versionsInfo[main];
+
   }
+
 
 
   return {};
+
 }
+
 
 
 // Картинка
 function getVersionImage(id, info) {
-
   if (info.image) {
     return info.image;
   }
 
-  return `/images/${id}.webp`;
+  return `/api/version-image/${getMainVersion(id)}`;
 }
 
 
 
+// Сортировка
+function sortVersions(a, b) {
+
+
+  const va =
+    getMainVersion(a.id)
+      .split(".")
+      .map(Number);
+
+
+
+  const vb =
+    getMainVersion(b.id)
+      .split(".")
+      .map(Number);
+
+
+
+  return (
+
+    (vb[0] || 0)
+    -
+    (va[0] || 0)
+
+  )
+    ||
+    (
+
+      (vb[1] || 0)
+      -
+      (va[1] || 0)
+
+    );
+
+
+}
+
+
+
+
+
 async function generateVersions() {
+
 
   console.log(
     "Получаем версии Minecraft..."
   );
 
 
-  const response = await fetch(
-    MOJANG_URL
-  );
+
+  const response =
+    await fetch(
+      MOJANG_URL
+    );
 
 
-  const data = await response.json();
+
+  const data =
+    await response.json();
+
 
 
 
   let releases =
     data.versions.filter(
-      version =>
-        version.type === "release" &&
-        isMainRelease(version.id)
+      isRelease
     );
 
 
 
-  // новые версии сверху
+
+
+  // Убираем дубликаты
+  const unique = {};
+
+
+
+  for (const version of releases) {
+
+
+    const main =
+      getMainVersion(
+        version.id
+      );
+
+
+
+    if (
+
+      !unique[main]
+
+      ||
+
+      new Date(version.releaseTime)
+
+      >
+
+      new Date(
+        unique[main].releaseTime
+      )
+
+    ) {
+
+
+      unique[main] =
+        version;
+
+
+    }
+
+
+  }
+
+  releases =
+    Object.values(unique);
+
+
+
   releases.sort(
-    (a, b) =>
-      new Date(b.releaseTime) -
-      new Date(a.releaseTime)
+    sortVersions
   );
+
+
+
 
 
   const versions =
@@ -98,7 +230,10 @@ async function generateVersions() {
 
 
       const date =
-        new Date(version.releaseTime);
+        new Date(
+          version.releaseTime
+        );
+
 
 
       const info =
@@ -110,22 +245,32 @@ async function generateVersions() {
 
       return {
 
+
         slug:
-          `java-${version.id.replaceAll(".", "-")}`,
+          `java-${getMainVersion(version.id)
+            .replaceAll(".", "-")}`,
+
 
 
         id:
-          version.id,
+          getMainVersion(
+            version.id
+          ),
+
 
 
         title:
-          info.title ||
-          `Minecraft ${version.id}`,
+          info.title
+          ||
+          `Minecraft ${getMainVersion(version.id)}`,
+
 
 
         name:
-          info.title ||
-          `Java Edition ${version.id}`,
+          info.title
+          ||
+          `Java Edition ${getMainVersion(version.id)}`,
+
 
 
         edition:
@@ -133,9 +278,15 @@ async function generateVersions() {
 
 
 
+
         releaseDate:
-          info.releaseDate ||
-          version.releaseTime.substring(0, 10),
+          info.releaseDate
+          ||
+          version.releaseTime.substring(
+            0,
+            10
+          ),
+
 
 
 
@@ -157,42 +308,66 @@ async function generateVersions() {
 
 
         codename:
-          info.codename || "",
+          info.codename
+          ||
+          "",
 
 
 
         summary:
-          info.summary ||
+          info.summary
+          ||
           "Описание пока отсутствует.",
 
 
 
+
         features:
-          info.features || [],
+          info.features
+          ||
+          [],
+
 
 
         blocks:
-          info.blocks || [],
+          info.blocks
+          ||
+          [],
+
 
 
         items:
-          info.items || [],
+          info.items
+          ||
+          [],
+
 
 
         mobs:
-          info.mobs || [],
+          info.mobs
+          ||
+          [],
+
 
 
         biomes:
-          info.biomes || [],
+          info.biomes
+          ||
+          [],
+
 
 
         structures:
-          info.structures || [],
+          info.structures
+          ||
+          [],
+
 
 
         patches:
-          info.patches || [],
+          info.patches
+          ||
+          [],
 
 
 
@@ -205,23 +380,33 @@ async function generateVersions() {
 
 
         accent:
-          info.accent ||
+          info.accent
+          ||
           "default"
 
+
       };
+
 
     });
 
 
 
+
+
+
   fs.writeFileSync(
+
     "./data/versions.json",
+
     JSON.stringify(
       versions,
       null,
       2
     ),
+
     "utf8"
+
   );
 
 
@@ -230,9 +415,14 @@ async function generateVersions() {
     `Создано ${versions.length} версий.`
   );
 
+
 }
 
 
 
+
+
 generateVersions()
-  .catch(console.error);
+  .catch(
+    console.error
+  );
