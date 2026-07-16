@@ -79,14 +79,9 @@ function getVersionInfo(id) {
     return versionsInfo[main];
 
   }
-
-
-
   return {};
 
 }
-
-
 
 // Картинка
 function getVersionImage(id, info) {
@@ -97,8 +92,6 @@ function getVersionImage(id, info) {
   return `/api/version-image/${getMainVersion(id)}`;
 }
 
-
-
 // Сортировка
 function sortVersions(a, b) {
 
@@ -108,14 +101,10 @@ function sortVersions(a, b) {
       .split(".")
       .map(Number);
 
-
-
   const vb =
     getMainVersion(b.id)
       .split(".")
       .map(Number);
-
-
 
   return (
 
@@ -132,13 +121,7 @@ function sortVersions(a, b) {
       (va[1] || 0)
 
     );
-
-
 }
-
-
-
-
 
 async function generateVersions() {
 
@@ -147,44 +130,28 @@ async function generateVersions() {
     "Получаем версии Minecraft..."
   );
 
-
-
   const response =
     await fetch(
       MOJANG_URL
     );
 
-
-
   const data =
     await response.json();
-
-
-
 
   let releases =
     data.versions.filter(
       isRelease
     );
 
-
-
-
-
   // Убираем дубликаты
   const unique = {};
 
-
-
   for (const version of releases) {
-
 
     const main =
       getMainVersion(
         version.id
       );
-
-
 
     if (
 
@@ -221,10 +188,6 @@ async function generateVersions() {
     sortVersions
   );
 
-
-
-
-
   const versions =
     releases.map(version => {
 
@@ -234,14 +197,10 @@ async function generateVersions() {
           version.releaseTime
         );
 
-
-
       const info =
         getVersionInfo(
           version.id
         );
-
-
 
       return {
 

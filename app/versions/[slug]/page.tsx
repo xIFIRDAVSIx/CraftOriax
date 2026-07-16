@@ -1,106 +1,185 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { versions } from "@/lib/content";
+import {
+  versions,
+  bedrockVersions
+} from "@/lib/content";
+
 import VersionBanner from "@/components/VersionBanner/VersionBanner";
 
-export function generateStaticParams() {
-  return versions.map((v) => ({
-    slug: v.slug,
+
+const allVersions = [
+  ...versions,
+  ...bedrockVersions
+];
+
+
+export function generateStaticParams(){
+
+  return allVersions.map(v => ({
+    slug: v.slug
   }));
+
 }
+
+
 
 export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+  params
+}:{
+  params:Promise<{slug:string}>
+}){
 
-  const v = versions.find((x) => x.slug === slug);
+  const {
+    slug
+  } = await params;
+
+
+  const v =
+    allVersions.find(
+      x => x.slug === slug
+    );
+
 
   return {
-    title: v?.name ?? "Версия",
-    description: v?.summary,
+
+    title:
+      v?.name ?? "Версия",
+
+    description:
+      v?.summary
+
   };
+
 }
 
+
+
 export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+  params
+}:{
+  params:Promise<{slug:string}>
+}){
 
-  const v = versions.find((x) => x.slug === slug);
 
-  if (!v) notFound();
+  const {
+    slug
+  } = await params;
+
+
+  const v =
+    allVersions.find(
+      x=>x.slug===slug
+    );
+
+
+
+  if(!v)
+    notFound();
+
+
 
   return (
+
     <main>
+
+
       <article className="detail-hero">
+
+
         <div className="breadcrumbs">
-          <Link href="/versions">Версии</Link>
-          <span>/</span>
-          <span>{v.name}</span>
+
+          <Link href="/versions">
+            Версии
+          </Link>
+
+
+          <span>
+            /
+          </span>
+
+
+          <span>
+            {v.name}
+          </span>
+
+
         </div>
+
+
 
         <div className="detail-heading">
-          <div>
-            <span className="eyebrow">
-              {v.edition} Edition · {v.year}
-            </span>
 
-            <h1>{v.name}</h1>
-          </div>
+          <span className="eyebrow">
 
-          <p>{v.summary}</p>
+            {v.edition} Edition
+
+          </span>
+
+
+          <h1>
+            {v.name}
+          </h1>
+
+
+          <p>
+            {v.summary}
+          </p>
+
+
         </div>
 
+
+
         <div className="detail-image">
+
           <VersionBanner
             version={v.id}
             mode="page"
           />
+
         </div>
+
+
       </article>
 
-      <div className="detail-body">
-        <div className="facts-grid">
-          <div className="fact">
-            <span>Дата выхода</span>
-            <strong>{v.date}</strong>
-          </div>
 
-          <div className="fact">
-            <span>Издание</span>
-            <strong>{v.edition} Edition</strong>
-          </div>
-        </div>
 
-        <h2>ГЛАВНЫЕ ИЗМЕНЕНИЯ</h2>
+      <section className="detail-body">
+
+
+        <h2>
+          ГЛАВНЫЕ ИЗМЕНЕНИЯ
+        </h2>
+
 
         <p>
-          {v.features.join(" · ")}. Обновление заметно расширило возможности
-          исследования, строительства и автоматизации.
+          {v.features.join(" · ")}
         </p>
 
-        <h2>НОВЫЕ БЛОКИ</h2>
+
+        <h2>
+          БЛОКИ
+        </h2>
+
 
         <div className="tag-row">
-          {v.blocks.map((x) => (
-            <span key={x}>{x}</span>
+
+          {v.blocks.map(x=>(
+            <span key={x}>
+              {x}
+            </span>
           ))}
+
         </div>
 
-        <h2>НОВЫЕ МОБЫ</h2>
 
-        <div className="tag-row">
-          {v.mobs.map((x) => (
-            <span key={x}>{x}</span>
-          ))}
-        </div>
-      </div>
+      </section>
+
+
     </main>
+
   );
+
 }
