@@ -9,13 +9,7 @@
     overflow: hidden;
 }
 
-.bannerSmall {
-    width: 100%;
-    height: 220px;
-    padding: 18px;
-}
-
-/* ---------- PAGE ---------- */
+/* ================= PAGE ================= */
 
 .page {
     padding: 40px;
@@ -29,7 +23,7 @@
 
 .pageTitle {
     font-family: "Orbitron", sans-serif;
-    font-size: clamp(34px,4vw,60px);
+    font-size: clamp(34px, 4vw, 60px);
     font-weight: 800;
     line-height: 1.05;
     color: white;
@@ -38,26 +32,27 @@
 .pageVersion {
     margin-top: 18px;
     padding: 10px 22px;
-    font-size: clamp(18px,2vw,24px);
+    font-size: clamp(18px, 2vw, 24px);
 }
 
-/* ---------- FEATURED ---------- */
+/* ================= FEATURED ================= */
 
 .featured {
-    padding: 26px;
+    padding: 32px;
+    align-items: center;
 }
 
 .featuredLogo {
-    width: 82px;
-    height: 82px;
-    margin-right: 20px;
+    width: 96px;
+    height: 96px;
+    margin-right: 24px;
 }
 
 .featuredTitle {
     font-family: "Orbitron", sans-serif;
-    font-size: 34px;
+    font-size: clamp(32px, 3vw, 46px);
     font-weight: 800;
-    line-height: 1.05;
+    line-height: 1;
     color: white;
 }
 
@@ -67,12 +62,12 @@
     font-size: 18px;
 }
 
-/* ---------- CARD ---------- */
+/* ================= CARD ================= */
 
 .card {
-    justify-content: center;
-    gap: 12px;
     padding: 16px;
+    gap: 14px;
+    align-items: center;
 }
 
 .cardLogo {
@@ -94,7 +89,7 @@
     font-size: 13px;
 }
 
-/* ---------- COMMON ---------- */
+/* ================= COMMON ================= */
 
 .logo {
     position: relative;
@@ -103,10 +98,11 @@
 }
 
 .logo::before,
-.logo::after{
-    content:"";
-    position:absolute;
-    clip-path:polygon(
+.logo::after {
+    content: "";
+    position: absolute;
+
+    clip-path: polygon(
         25% 0,
         75% 0,
         100% 50%,
@@ -116,85 +112,122 @@
     );
 }
 
-.logo::before{
-    inset:0;
-    background:#9BE22D;
+.logo::before {
+    inset: 0;
+    background: #9BE22D;
 }
 
-.logo::after{
-    background:#111315;
+.logo::after {
+    background: #111315;
 }
 
-.pageLogo::after{
-    inset:24px;
+.pageLogo::after {
+    inset: 24px;
 }
 
-.featuredLogo::after{
-    inset:18px;
+.featuredLogo::after {
+    inset: 18px;
 }
 
-.cardLogo::after{
-    inset:12px;
+.cardLogo::after {
+    inset: 12px;
 }
 
-.content{
-    display:flex;
-    flex-direction:column;
-}
-
-.title span{
-    color:#9BE22D;
-}
-
-.version{
-    display:inline-flex;
-    align-self:flex-start;
-
-    background:#9BE22D;
-    color:#111315;
-
-    border-radius:999px;
-
-    font-weight:700;
-}
-
-.bannerSmall .content {
-    flex: 1;
+.content {
+    display: flex;
+    flex-direction: column;
     min-width: 0;
 }
 
-.bannerSmall .title {
-    font-size: 22px;
-    line-height: 1;
+.title {
+    white-space: normal;
     word-break: keep-all;
 }
 
-.bannerSmall .version {
-    margin-top: 8px;
-    font-size: 14px;
+.title span {
+    color: #9BE22D;
 }
 
-@media (max-width:768px){
+.version {
+    display: inline-flex;
+    align-self: flex-start;
 
-    .page{
-        padding:22px;
+    background: #9BE22D;
+    color: #111315;
+
+    border-radius: 999px;
+
+    font-weight: 700;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px) {
+
+    .page {
+        padding: 22px;
     }
 
-    .pageLogo{
-        width:72px;
-        height:72px;
-        margin-right:18px;
+    .pageLogo {
+        width: 72px;
+        height: 72px;
+        margin-right: 18px;
     }
 
-    .pageLogo::after{
-        inset:16px;
+    .pageLogo::after {
+        inset: 16px;
     }
 
-    .pageTitle{
-        font-size:30px;
+    .pageTitle {
+        font-size: 30px;
     }
 
-    .pageVersion{
-        font-size:16px;
+    .pageVersion {
+        font-size: 16px;
+    }
+
+    .featured {
+        padding: 20px;
+    }
+
+    .featuredLogo {
+        width: 70px;
+        height: 70px;
+        margin-right: 16px;
+    }
+
+    .featuredLogo::after {
+        inset: 14px;
+    }
+
+    .featuredTitle {
+        font-size: 26px;
+    }
+
+    .featuredVersion {
+        padding: 6px 14px;
+        font-size: 15px;
+    }
+
+    .card {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .cardLogo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .cardLogo::after {
+        inset: 10px;
+    }
+
+    .cardTitle {
+        font-size: 20px;
+    }
+
+    .cardVersion {
+        font-size: 12px;
     }
 }
