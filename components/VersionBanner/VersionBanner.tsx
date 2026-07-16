@@ -2,30 +2,23 @@ import styles from "./VersionBanner.module.css";
 
 interface VersionBannerProps {
   version: string;
-  compact?: boolean;
+  mode?: "page" | "featured" | "card";
 }
 
 export default function VersionBanner({
   version,
-  compact = false,
+  mode = "page",
 }: VersionBannerProps) {
   return (
- <div
-  className={`${styles.banner} ${
-    compact ? styles.bannerSmall : styles.bannerLarge
-  }`}
->
-      <div
-        className={`${styles.logo} ${compact ? styles.logoSmall : styles.logoLarge
-          }`}
-      />
+    <div className={`${styles.banner} ${styles[mode]}`}>
+      <div className={`${styles.logo} ${styles[mode + "Logo"]}`} />
 
       <div className={styles.content}>
-        <div className={styles.title}>
+        <div className={`${styles.title} ${styles[mode + "Title"]}`}>
           MINECRAFT <span>JAVA</span>
         </div>
 
-        <div className={styles.version}>
+        <div className={`${styles.version} ${styles[mode + "Version"]}`}>
           Version {version}
         </div>
       </div>

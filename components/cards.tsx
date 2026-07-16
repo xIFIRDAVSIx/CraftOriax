@@ -19,9 +19,9 @@ export function VersionCard({
     >
       <div className="card-image">
         <VersionBanner
-          version={version.id}
-          compact
-        />
+    version={version.id}
+    mode={featured ? "featured" : "card"}
+/>
 
         <span className="edition-badge">
           {version.edition}

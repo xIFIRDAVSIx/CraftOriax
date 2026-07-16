@@ -58,7 +58,10 @@ export default async function Page({
         </div>
 
         <div className="detail-image">
-          <VersionBanner version={v.id} />
+          <VersionBanner
+            version={v.id}
+            mode="page"
+          />
         </div>
       </article>
 
