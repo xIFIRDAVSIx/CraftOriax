@@ -13,9 +13,7 @@ const allVersions = [
   ...versions,
   ...bedrockVersions
 ];
-
-
-export function generateStaticParams(){
+export function generateStaticParams() {
 
   return allVersions.map(v => ({
     slug: v.slug
@@ -27,9 +25,9 @@ export function generateStaticParams(){
 
 export async function generateMetadata({
   params
-}:{
-  params:Promise<{slug:string}>
-}){
+}: {
+  params: Promise<{ slug: string }>
+}) {
 
   const {
     slug
@@ -58,9 +56,9 @@ export async function generateMetadata({
 
 export default async function Page({
   params
-}:{
-  params:Promise<{slug:string}>
-}){
+}: {
+  params: Promise<{ slug: string }>
+}) {
 
 
   const {
@@ -70,12 +68,12 @@ export default async function Page({
 
   const v =
     allVersions.find(
-      x=>x.slug===slug
+      x => x.slug === slug
     );
 
 
 
-  if(!v)
+  if (!v)
     notFound();
 
 
@@ -136,6 +134,7 @@ export default async function Page({
 
           <VersionBanner
             version={v.id}
+            edition={v.edition as "Java" | "Bedrock"}
             mode="page"
           />
 
@@ -166,7 +165,7 @@ export default async function Page({
 
         <div className="tag-row">
 
-          {v.blocks.map(x=>(
+          {v.blocks.map(x => (
             <span key={x}>
               {x}
             </span>
