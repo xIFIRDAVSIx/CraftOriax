@@ -1,3 +1,5 @@
+import BackButton from "@/components/buttons/buttonBack";
+import InfoButton from "@/components/buttons/info-button";
 import { CatalogGrid } from "@/components/catalog-grid";
 import {
   versions,
@@ -42,7 +44,6 @@ export default function Page(){
         />
 
       </section>
-
 
     </main>
 

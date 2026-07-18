@@ -12,6 +12,7 @@ export default function HomePage() {
     <section className="section dark-section"><div className="section-title-row"><div><span className="eyebrow">Хронология</span><h2>ВАЖНЫЕ ВЕРСИИ</h2></div><Link href="/versions">Все обновления <ArrowRight /></Link></div><EditionVersionShowcase versions={[ ...versions, ...bedrockVersions ]}/></section>
     <section className="section"><div className="section-title-row"><div><span className="eyebrow">Бестиарий</span><h2>ОБИТАТЕЛИ МИРА</h2></div><Link href="/mobs">Каталог мобов <ArrowRight /></Link></div><div className="card-grid">{mobs.slice(0, 3).map((mob) => <MobCard key={mob.slug} mob={mob} />)}</div></section>
     <section className="section article-section"><div className="section-title-row"><div><span className="eyebrow">База знаний</span><h2>УЧИСЬ. СТРОЙ. ВЫЖИВАЙ.</h2></div><Link href="/guides">Все гайды <ArrowRight /></Link></div><EditionHomeArticles articles={articles}/></section>
+
   </main>
 }
 

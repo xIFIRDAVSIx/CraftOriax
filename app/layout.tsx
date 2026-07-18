@@ -5,6 +5,8 @@ import { EditionProvider } from '@/components/edition-provider'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import './globals.css'
+import BackButton from '@/components/buttons/buttonBack'
+import InfoButton from '@/components/buttons/info-button'
 
 const display = Russo_One({ weight: '400', subsets: ['cyrillic', 'latin'], variable: '--font-display' })
 const body = Manrope({ subsets: ['cyrillic', 'latin'], variable: '--font-body' })
@@ -19,6 +21,29 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#0b100d' }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="ru" className={`${display.variable} ${body.variable} bg-background`}><body><EditionProvider><SiteHeader />{children}<SiteFooter /></EditionProvider>{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html
+      lang="ru"
+      className={`${display.variable} ${body.variable} bg-background`}
+    >
+      <body>
+        <EditionProvider>
+          <SiteHeader />
+
+          <BackButton />
+
+          {children}
+
+          <SiteFooter />
+
+          <InfoButton />
+        </EditionProvider>
+
+        {process.env.NODE_ENV === "production" && <Analytics />}
+      </body>
+    </html>
+  );
 }
