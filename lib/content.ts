@@ -36,6 +36,7 @@ export type MobBanner =
   | 'zombie'
   | 'skeleton'
   | 'spider'
+  | 'cave_spider'
   | 'enderman'
   | 'bee'
   | 'breeze'

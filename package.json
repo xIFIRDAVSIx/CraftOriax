@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "gv": "node scripts/generate-versions.js",
-    "gbv": "node scripts/generate-bedrock-versions.js"
+    "gbv": "node scripts/generate-bedrock-versions.js",
+    "gm": "node scripts/generate-mobs.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

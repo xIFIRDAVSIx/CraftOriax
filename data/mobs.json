@@ -1,83 +1,14 @@
 [
   {
-    "slug": "creeper",
-    "name": "Крипер",
-    "category": "Враждебный",
-    "health": 20,
-    "banner": "creeper",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
-    "slug": "zombie",
-    "name": "Зомби",
-    "category": "Враждебный",
-    "health": 20,
-    "banner": "zombie",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
-    "slug": "skeleton",
-    "name": "Скелет",
-    "category": "Враждебный",
-    "health": 20,
-    "banner": "skeleton",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
-    "slug": "spider",
-    "name": "Паук",
-    "category": "Нейтральный",
-    "health": 16,
-    "banner": "spider",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
-    "slug": "cave-spider",
-    "name": "Пещерный паук",
-    "category": "Враждебный",
-    "health": 12,
-    "banner": "spider",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
-    "slug": "enderman",
-    "name": "Эндермен",
-    "category": "Нейтральный",
-    "health": 40,
-    "banner": "enderman",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
-    "slug": "bee",
-    "name": "Пчела",
-    "category": "Нейтральный",
-    "health": 10,
-    "banner": "bee",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
     "slug": "breeze",
     "name": "Бриз",
     "category": "Враждебный",
     "health": 30,
     "banner": "breeze",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
-    "slug": "allay",
-    "name": "Эллей",
-    "category": "Дружелюбный",
-    "health": 20,
-    "banner": "allay",
-    "editions": ["Java", "Bedrock"]
-  },
-  {
-    "slug": "sniffer",
-    "name": "Нюхач",
-    "category": "Дружелюбный",
-    "health": 14,
-    "banner": "sniffer",
-    "editions": ["Java", "Bedrock"]
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
   },
   {
     "slug": "warden",
@@ -85,6 +16,108 @@
     "category": "Босс",
     "health": 500,
     "banner": "warden",
-    "editions": ["Java", "Bedrock"]
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "zombie",
+    "name": "Зомби",
+    "category": "Враждебный",
+    "health": 20,
+    "banner": "zombie",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "creeper",
+    "name": "Крипер",
+    "category": "Враждебный",
+    "health": 20,
+    "banner": "creeper",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "sniffer",
+    "name": "Нюхач",
+    "category": "Дружелюбный",
+    "health": 14,
+    "banner": "sniffer",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "spider",
+    "name": "Паук",
+    "category": "Нейтральный",
+    "health": 16,
+    "banner": "spider",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "cave-spider",
+    "name": "Пещерный паук",
+    "category": "Враждебный",
+    "health": 12,
+    "banner": "cave_spider",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "bee",
+    "name": "Пчела",
+    "category": "Нейтральный",
+    "health": 10,
+    "banner": "bee",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "skeleton",
+    "name": "Скелет",
+    "category": "Враждебный",
+    "health": 20,
+    "banner": "skeleton",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "allay",
+    "name": "Эллей",
+    "category": "Дружелюбный",
+    "health": 20,
+    "banner": "allay",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
+  },
+  {
+    "slug": "enderman",
+    "name": "Эндермен",
+    "category": "Нейтральный",
+    "health": 40,
+    "banner": "enderman",
+    "editions": [
+      "Java",
+      "Bedrock"
+    ]
   }
 ]

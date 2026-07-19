@@ -1,233 +1,41 @@
-.banner {
-    width: 100%;
-    height: 100%;
-    background: #111315;
-
-    display: flex;
-    align-items: center;
-
-    overflow: hidden;
-}
-
-/* ================= PAGE ================= */
-
-.page {
-    padding: 40px;
-}
-
-.pageLogo {
-    width: 110px;
-    height: 110px;
-    margin-right: 30px;
-}
-
-.pageTitle {
-    font-family: "Orbitron", sans-serif;
-    font-size: clamp(34px, 4vw, 60px);
-    font-weight: 800;
-    line-height: 1.05;
-    color: white;
-}
-
-.pageVersion {
-    margin-top: 18px;
-    padding: 10px 22px;
-    font-size: clamp(18px, 2vw, 24px);
-}
-
-/* ================= FEATURED ================= */
-
-.featured {
-    padding: 32px;
-    align-items: center;
-}
-
-.featuredLogo {
-    width: 96px;
-    height: 96px;
-    margin-right: 24px;
-}
-
-.featuredTitle {
-    font-family: "Orbitron", sans-serif;
-    font-size: clamp(32px, 3vw, 46px);
-    font-weight: 800;
-    line-height: 1;
-    color: white;
-}
-
-.featuredVersion {
-    margin-top: 12px;
-    padding: 8px 18px;
-    font-size: 18px;
-}
-
-/* ================= CARD ================= */
-
-.card {
-    padding: 16px;
-    gap: 14px;
-    align-items: center;
-}
-
-.cardLogo {
-    width: 54px;
-    height: 54px;
-}
-
-.cardTitle {
-    font-family: "Orbitron", sans-serif;
-    font-size: 23px;
-    font-weight: 800;
-    line-height: .95;
-    color: white;
-}
-
-.cardVersion {
-    margin-top: 8px;
-    padding: 6px 12px;
-    font-size: 13px;
-}
-
-/* ================= COMMON ================= */
-
-.logo {
-    position: relative;
-    flex-shrink: 0;
-    transform: rotate(90deg);
-}
-
-.logo::before,
-.logo::after {
-    content: "";
-    position: absolute;
-
-    clip-path: polygon(
-        25% 0,
-        75% 0,
-        100% 50%,
-        75% 100%,
-        25% 100%,
-        0 50%
-    );
-}
-
-.logo::before {
-    inset: 0;
-    background: #9BE22D;
-}
-
-.logo::after {
-    background: #111315;
-}
-
-.pageLogo::after {
-    inset: 24px;
-}
-
-.featuredLogo::after {
-    inset: 18px;
-}
-
-.cardLogo::after {
-    inset: 12px;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
-.title {
-    white-space: normal;
-    word-break: keep-all;
-}
-
-.title span {
-    color: #9BE22D;
-}
-
-.version {
-    display: inline-flex;
-    align-self: flex-start;
-
-    background: #9BE22D;
-    color: #111315;
-
-    border-radius: 999px;
-
-    font-weight: 700;
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width:768px) {
-
-    .page {
-        padding: 22px;
-    }
-
-    .pageLogo {
-        width: 72px;
-        height: 72px;
-        margin-right: 18px;
-    }
-
-    .pageLogo::after {
-        inset: 16px;
-    }
-
-    .pageTitle {
-        font-size: 30px;
-    }
-
-    .pageVersion {
-        font-size: 16px;
-    }
-
-    .featured {
-        padding: 20px;
-    }
-
-    .featuredLogo {
-        width: 70px;
-        height: 70px;
-        margin-right: 16px;
-    }
-
-    .featuredLogo::after {
-        inset: 14px;
-    }
-
-    .featuredTitle {
-        font-size: 26px;
-    }
-
-    .featuredVersion {
-        padding: 6px 14px;
-        font-size: 15px;
-    }
-
-    .card {
-        padding: 14px;
-        gap: 10px;
-    }
-
-    .cardLogo {
-        width: 48px;
-        height: 48px;
-    }
-
-    .cardLogo::after {
-        inset: 10px;
-    }
-
-    .cardTitle {
-        font-size: 20px;
-    }
-
-    .cardVersion {
-        font-size: 12px;
-    }
+.banner { width: 100%; height: 100%; background: #111315; display: flex; align-items: center; overflow: hidden; }
+.page { padding: 40px; }
+.pageLogo { width: 110px; height: 110px; margin-right: 30px; }
+.pageTitle { font-family: "Orbitron", sans-serif; font-size: clamp(34px, 4vw, 60px); font-weight: 800; line-height: 1.05; color: white; }
+.pageVersion { margin-top: 18px; padding: 10px 22px; font-size: clamp(18px, 2vw, 24px); }
+.featured { padding: 32px; align-items: center; }
+.featuredLogo { width: 96px; height: 96px; margin-right: 24px; }
+.featuredTitle { font-family: "Orbitron", sans-serif; font-size: clamp(32px, 3vw, 46px); font-weight: 800; line-height: 1; color: white; }
+.featuredVersion { margin-top: 12px; padding: 8px 18px; font-size: 18px; }
+.card { padding: 16px; gap: 14px; align-items: center; }
+.cardLogo { width: 54px; height: 54px; }
+.cardTitle { font-family: "Orbitron", sans-serif; font-size: 23px; font-weight: 800; line-height: .95; color: white; }
+.cardVersion { margin-top: 8px; padding: 6px 12px; font-size: 13px; }
+.logo { position: relative; flex-shrink: 0; transform: rotate(90deg); }
+.logo::before, .logo::after { content: ""; position: absolute; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+.logo::before { inset: 0; background: #a8d742; }
+.logo::after { inset: 16px; background: #172008; }
+.pageLogo::after { inset: 22px; }
+.featuredLogo::after { inset: 19px; }
+.cardLogo::after { inset: 11px; }
+.content { display: flex; flex-direction: column; }
+.title { color: white; letter-spacing: -0.02em; }
+.title span { color: #a8d742; }
+.version { display: inline-block; border: 1px solid rgba(168,215,66,.35); color: #a8d742; font-family: monospace; font-weight: 600; border-radius: 4px; }
+@media (max-width: 640px) {
+  .page { padding: 24px; }
+  .pageLogo { width: 80px; height: 80px; margin-right: 16px; }
+  .pageLogo::after { inset: 16px; }
+  .pageTitle { font-size: 28px; }
+  .pageVersion { font-size: 16px; }
+  .featured { padding: 20px; }
+  .featuredLogo { width: 70px; height: 70px; margin-right: 16px; }
+  .featuredLogo::after { inset: 14px; }
+  .featuredTitle { font-size: 26px; }
+  .featuredVersion { padding: 6px 14px; font-size: 15px; }
+  .card { padding: 14px; gap: 10px; }
+  .cardLogo { width: 48px; height: 48px; }
+  .cardLogo::after { inset: 10px; }
+  .cardTitle { font-size: 20px; }
+  .cardVersion { font-size: 12px; }
 }

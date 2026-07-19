@@ -15,6 +15,7 @@ import WardenFace from './icons/WardenFace'
 import DefaultFace from './icons/DefaultFace'
 
 import type { MobIconProps } from './icons/shared'
+import CaveSpiderFace from './icons/CaveSpiderFace'
 
 
 export const mobIconMap: Record<
@@ -25,6 +26,7 @@ export const mobIconMap: Record<
   zombie: ZombieFace,
   skeleton: SkeletonFace,
   spider: SpiderFace,
+  cave_spider: CaveSpiderFace,
   enderman: EndermanFace,
   bee: BeeFace,
   breeze: BreezeFace,
