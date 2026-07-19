@@ -6,9 +6,9 @@ import { Search } from 'lucide-react'
 import { MobCard, VersionCard } from './cards'
 import { supportsEdition, useEdition } from './edition-provider'
 
-import type { Mob, Version } from '@/lib/content'
+import type { MobSummary, Version } from '@/lib/content'
 
-type CatalogItem = Version | Mob
+type CatalogItem = Version | MobSummary
 
 export function CatalogGrid({
   items,
@@ -25,7 +25,7 @@ export function CatalogGrid({
   const filters =
     type === 'versions'
       ? []
-      : ['Все', 'Враждебный', 'Дружелюбный', 'Нейтральный']
+      : ['Все', 'Враждебный', 'Нейтральный', 'Дружелюбный', 'Босс']
 
   const filtered = useMemo(
     () =>
@@ -37,7 +37,7 @@ export function CatalogGrid({
         const matchesCategory =
           type === 'versions' ||
           filter === 'Все' ||
-          (item as Mob).category === filter
+          (item as MobSummary).category === filter
 
         return (
           supportsEdition(item, edition) &&
@@ -90,7 +90,7 @@ export function CatalogGrid({
           ) : (
             <MobCard
               key={item.slug}
-              mob={item as Mob}
+              mob={item as MobSummary}
             />
           )
         )}

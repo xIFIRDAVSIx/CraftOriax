@@ -1,8 +1,8 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Heart, MapPin } from 'lucide-react'
-import type { Article, Mob, Version } from '@/lib/content'
+import { ArrowUpRight, Heart } from 'lucide-react'
+import type { Article, MobSummary, Version } from '@/lib/content'
 import VersionBanner from "@/components/VersionBanner/VersionBanner";
+import { getMobIcon } from '@/components/MobBanner/mobIcons';
 
 
 export function VersionCard({
@@ -81,8 +81,10 @@ export function VersionCard({
 export function MobCard({
   mob
 }: {
-  mob: Mob
+  mob: MobSummary
 }) {
+
+  const Icon = getMobIcon(mob.banner)
 
   return (
 
@@ -91,15 +93,11 @@ export function MobCard({
       href={`/mobs/${mob.slug}`}
     >
 
-      <div className="card-image">
+      <div className="card-image mob-card-image">
 
-        <Image
-          src={mob.image}
-          alt={`Арт: ${mob.name}`}
-          fill
-          sizes="(max-width: 800px) 100vw, 33vw"
-        />
-
+        <div className="mob-card-icon">
+          <Icon size={180} />
+        </div>
 
         <span className="edition-badge">
           {mob.category}
@@ -117,10 +115,8 @@ export function MobCard({
             {mob.health} HP
           </span>
 
-
           <span className="stat">
-            <MapPin size={15} />
-            {mob.spawn}
+            {mob.editions.join(' • ')}
           </span>
 
         </div>
@@ -130,14 +126,7 @@ export function MobCard({
           {mob.name}
         </h3>
 
-
-        <p>
-          {mob.behavior}
-        </p>
-
-
       </div>
-
 
     </Link>
 
