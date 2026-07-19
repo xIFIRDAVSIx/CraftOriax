@@ -4,6 +4,7 @@ import { ArrowRight, Box, Compass, Sparkles } from 'lucide-react'
 import { MobCard } from '@/components/cards'
 import { EditionHomeArticles, EditionVersionShowcase } from '@/components/edition-content'
 import {articles, mobs, versions, bedrockVersions } from '@/lib/content'
+import MobBanner from "@/components/MobBanner/MobBanner";
 
 export default function HomePage() {
   return <main>

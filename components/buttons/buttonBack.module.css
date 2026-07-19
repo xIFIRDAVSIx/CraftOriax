@@ -1,36 +1,70 @@
 .backButton {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  top: 90px;
+  right: 28px;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 
-  width: 52px;
-  height: 52px;
+  height: 46px;
+  padding: 0 18px;
 
-  border: none;
-  border-radius: 50%;
+  border-radius: 14px;
 
-  background: rgba(30, 30, 30, .9);
-  backdrop-filter: blur(10px);
+  background: rgba(20, 24, 22, .72);
+  backdrop-filter: blur(14px);
 
-  color: #fff;
+  border: 1px solid rgba(120, 255, 170, .12);
+
+  color: #eef8f1;
+
+  text-decoration: none;
   cursor: pointer;
 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+  box-shadow:
+    0 8px 28px rgba(0,0,0,.35),
+    inset 0 1px rgba(255,255,255,.05);
 
-  transition: .2s;
+  transition:
+    transform .18s ease,
+    background .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
 
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .backButton:hover {
   transform: translateY(-2px);
-  background: #2f8f4e;
+
+  background: rgba(37, 95, 57, .82);
+
+  border-color: rgba(95, 255, 150, .45);
+
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.42),
+    0 0 18px rgba(82, 219, 122, .18);
 }
 
 .backButton:active {
-  transform: scale(.95);
+  transform: scale(.97);
+}
+
+.backButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .backButton {
+    top: 76px;
+    right: 16px;
+
+    height: 42px;
+    padding: 0 14px;
+
+    border-radius: 12px;
+  }
 }

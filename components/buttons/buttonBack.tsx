@@ -18,7 +18,7 @@ export default function BackButton() {
       aria-label="Назад"
       title="Назад"
     >
-      <ArrowLeft size={22} />
+      <ArrowLeft />
     </button>
   );
 }
